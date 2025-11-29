@@ -1,164 +1,325 @@
-/* Базові стилі */
-body {
+* {
     margin: 0;
-    font-family: 'Arial Black', sans-serif;
-    background: linear-gradient(135deg, #000, #111);
-    color: #eee;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
     overflow-x: hidden;
 }
 
-.container {
-    display: grid;
-    grid-template-areas: 
-        "header header"
-        "sidebar main"
-        "footer footer";
-    grid-template-columns: 220px 1fr;
-    grid-template-rows: 100px 1fr 70px;
-    min-height: 100vh;
+/* Навігація */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: #2c3e50;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
 
-header {
-    grid-area: header;
-    background: #000;
-    color: #ff0000;
-    text-shadow: 0 0 15px #ff0000, 0 0 30px #fff;
+.navbar.scrolled {
+    padding: 0.5rem 5%;
+    background: rgba(44, 62, 80, 0.95);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #3498db;
+}
+
+/* Герой секція */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    padding: 0 5%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+}
+
+.cta-button {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* Анімовані коробки */
+.hero-image {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+.floating-box {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    opacity: 0.8;
+}
+
+#box1 {
+    background: #e74c3c;
+    top: 50px;
+    left: 50px;
+}
+
+#box2 {
+    background: #3498db;
+    top: 200px;
+    right: 50px;
+}
+
+#box3 {
+    background: #2ecc71;
+    bottom: 50px;
+    left: 150px;
+}
+
+/* Секції */
+section {
+    padding: 5rem 5%;
+}
+
+.features {
+    background: #f8f9fa;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+.feature-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.5s ease;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Інтерактивна секція */
+.interactive {
+    text-align: center;
+}
+
+.interactive-area {
+    margin-bottom: 2rem;
+}
+
+.interactive-btn {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.interactive-btn:hover {
+    background: #2980b9;
+}
+
+.animation-box {
+    width: 200px;
+    height: 200px;
+    background: #9b59b6;
+    margin: 2rem auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
+    color: white;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+}
+
+/* Лічильник */
+.counter-section {
+    text-align: center;
+    background: #34495e;
+    color: white;
+}
+
+.counter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.counter-container button {
+    padding: 15px 25px;
+    font-size: 1.5rem;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.counter-container button:hover {
+    background: #c0392b;
+    transform: scale(1.1);
+}
+
+#counter {
+    font-size: 3rem;
     font-weight: bold;
-    animation: flicker 2s infinite;
+    min-width: 100px;
 }
 
-/* Ефект мерехтіння заголовка */
-@keyframes flicker {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+/* Анімації */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
         opacity: 1;
-    }
-    20%, 24%, 55% {
-        opacity: 0.4;
+        transform: translateX(0);
     }
 }
 
-nav {
-    grid-area: sidebar;
-    background: rgba(20, 20, 20, 0.9);
-    padding: 25px;
-    border-right: 2px solid #ff0000;
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-nav a {
-    display: block;
-    color: #eee;
-    text-decoration: none;
-    margin: 15px 0;
-    padding: 10px;
-    border-radius: 5px;
-    transition: all 0.3s;
+@keyframes slideInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-nav a:hover {
-    background: #ff0000;
-    color: #fff;
-    transform: translateX(5px);
-    box-shadow: 0 0 10px #ff0000;
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
-main {
-    grid-area: main;
-    padding: 30px;
-    animation: fadeIn 1.2s ease-in-out;
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Застосування анімацій */
+.fade-in {
+    animation: fadeIn 1s ease forwards;
+}
+
+.fade-in-delay {
+    animation: fadeIn 1s ease 0.5s forwards;
+}
+
+.slide-in-left {
+    animation: slideInLeft 1s ease forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 1s ease forwards;
+}
+
+.slide-in-bottom {
+    animation: slideInBottom 1s ease forwards;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+.floating-box {
+    animation: float 3s ease-in-out infinite;
+}
+
+#box2 {
+    animation-delay: 0.5s;
+}
+
+#box3 {
+    animation-delay: 1s;
 }
 
 footer {
-    grid-area: footer;
-    background: #111;
-    color: #aaa;
     text-align: center;
-    padding: 20px;
-    border-top: 2px solid #ff0000;
-}
-
-/* Анімація появи */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Кнопки */
-button, .btn {
-    background: #ff0000;
-    color: #fff;
-    border: none;
-    padding: 12px 25px;
-    font-size: 16px;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 0 15px #ff0000;
-}
-
-button:hover, .btn:hover {
-    background: #fff;
-    color: #ff0000;
-    box-shadow: 0 0 25px #ff0000, 0 0 50px #ff0000;
-    transform: scale(1.05);
-}
-
-/* Картки */
-.card {
-    background: rgba(30, 30, 30, 0.8);
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(255,0,0,0.3);
-    transition: transform 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-/* Галерея */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-}
-
-.gallery img {
-    width: 100%;
-    border-radius: 10px;
-    transition: 0.4s;
-}
-
-.gallery img:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 20px #ff0000;
-}
-
-/* Адаптив */
-@media (max-width: 768px) {
-    .container {
-        grid-template-areas: 
-            "header"
-            "main"
-            "sidebar"
-            "footer";
-        grid-template-columns: 1fr;
-        grid-template-rows: 80px 1fr auto 70px;
-    }
-
-    nav {
-        border-right: none;
-        border-top: 2px solid #ff0000;
-        display: flex;
-        justify-content: space-around;
-    }
-
-    nav a {
-        margin: 5px;
-        padding: 8px;
-    }
+    padding: 2rem;
+    background: #2c3e50;
+    color: white;
 }
